@@ -91,21 +91,17 @@ function handleSlide(event){
 		if(event.code == "ArrowLeft"){
 			slideLeft();
 			setTwo();
-			setTwo();
 		}
 		else if(event.code == "ArrowRight"){
 			slideRight();
-			setTwo();
 			setTwo();
 		}
 		else if(event.code == "ArrowUp"){
 			slideUp();
 			setTwo();
-			setTwo();
 		}
 		else if(event.code == "ArrowDown"){
 			slideDown();
-			setTwo();
 			setTwo();
 		}
 	}
@@ -448,11 +444,9 @@ document.addEventListener('touchend', (event) => {
 		if(diffX > 0 ){
 			slideLeft();
 			setTwo();
-			setTwo();
 		}
 		else{
 			slideRight();
-			setTwo();
 			setTwo();
 		}
 	}
@@ -461,11 +455,9 @@ document.addEventListener('touchend', (event) => {
 		if(diffY > 0 ){
 			slideUp();
 			setTwo();
-			setTwo();
 		}
 		else{
 			slideDown();
-			setTwo();
 			setTwo();
 
 		}
