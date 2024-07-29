@@ -63,14 +63,15 @@ function updateTile(tile, num){
 	if(num > 0){
 		tile.innerText = num.toString();
 	
-		if(num <= 4096){
+		if(num <= 1024){
 							// class -> x2, class -> x4, x8, x16
 			tile.classList.add("x" + num.toString());
 		}
 
 		else{
-			tile.classList.add("x8192");
+			tile.classList.add("x2048");
 		}
+		checkWin();
 	}
 }
 
@@ -90,24 +91,27 @@ function handleSlide(event){
 		if(event.code == "ArrowLeft"){
 			slideLeft();
 			setTwo();
+			setTwo();
 		}
 		else if(event.code == "ArrowRight"){
 			slideRight();
+			setTwo();
 			setTwo();
 		}
 		else if(event.code == "ArrowUp"){
 			slideUp();
 			setTwo();
+			setTwo();
 		}
 		else if(event.code == "ArrowDown"){
 			slideDown();
+			setTwo();
 			setTwo();
 		}
 	}
 
 	document.getElementById("score").innerText = score;
-
-	checkWin();
+	// checkWin2(score);
 
 	if(hasLost() == true){
 		alert("Game Over! You have lost the game. Game will restart");
@@ -138,7 +142,6 @@ function slideLeft(){
 
 			// this code is the retrieve our tile element
 			let tile = document.getElementById(r.toString() + "-" + c.toString());
-
 			let num = board[r][c];
 
 			// Animation code
@@ -182,6 +185,7 @@ function slideRight(){
 		for(let c = 0; c<columns; c++){
 			// this code is the retrieve our tile element
 			let tile = document.getElementById(r.toString() + "-" + c.toString());
+
 			let num = board[r][c];
 			// Animation code
 			if(originalRow[c] !== num && num!==0){
@@ -258,6 +262,7 @@ function slideDown(){
 			board[r][c] = col[r];
 			// this code is the retrieve our tile element
 			let tile = document.getElementById(r.toString() + "-" + c.toString());
+
 			let num = board[r][c];
 			// Animation Code:
 			if(changedIndices.includes(r) && num!==0){
@@ -342,6 +347,7 @@ function setTwo(){
 			board[r][c] = 2;
 
 			let tile = document.getElementById(r.toString() + "-" + c.toString());
+
 			tile.innerText = "2";
 			tile.classList.add("x2");
 
@@ -352,25 +358,30 @@ function setTwo(){
 }
 
 function checkWin(){
+	setTimeout(() => {
+		
 	for(let r=0; r < rows; r++){
 		for(let c=0; c < columns; c++){
 
-			if(board[r][c] == 2048 && is2048Exist == false){
-				alert("You Win! You got 2048" );
-				is2048Exist = true;
-			}	
-			else if(board[r][c] == 4096 && is4096Exist == false){
-				alert("You are unstoppable at 4096!" );
-				is4096Exist = true;
-			}	
-			else if(board[r][c] == 8192 && is8192Exist == false){
-				alert("Victory! You have reached 8192! You are incredibly awesome" );
-				is8192Exist = true;
-			}
+			if(board[r][c] == 2048){
+				alert("You Win! You got MLBB(2048)" );
+				restartGame();
+
+
 		}
+		
 	}
 }
+}, 400);
 
+}
+function checkWin2(iskor){
+	if(iskor==2048){
+		alert("You Win! You got MLBB(2048)" );
+		restartGame();
+	}
+	
+}
 function hasLost(){
 	
 	for(let r=0; r < rows; r++){
@@ -411,12 +422,11 @@ function restartGame(){
     for(let r = 0; r < rows; r++){
         for(let c = 0; c < columns; c++){
             board[r][c] = 0;    // change all values to 0
+			
         }
     }
-
     score = 0;
 
-    setTwo()    // new tile   
 }
 
 document.addEventListener('touchstart', (event) =>{
@@ -438,9 +448,11 @@ document.addEventListener('touchend', (event) => {
 		if(diffX > 0 ){
 			slideLeft();
 			setTwo();
+			setTwo();
 		}
 		else{
 			slideRight();
+			setTwo();
 			setTwo();
 		}
 	}
@@ -449,17 +461,19 @@ document.addEventListener('touchend', (event) => {
 		if(diffY > 0 ){
 			slideUp();
 			setTwo();
+			setTwo();
 		}
 		else{
 			slideDown();
 			setTwo();
+			setTwo();
+
 		}
 
 	}
 
 	document.getElementById("score").innerText = score;
-
-	checkWin();
+	// checkWin2(score);
 
 	if(hasLost() == true){
 		alert("Game Over! You have lost the game. Game will restart");
@@ -479,7 +493,13 @@ document.addEventListener('touchmove', (event)=>{
 }, {passive: false}); // Use passive: false, to make preventDefault() work
 
 
+ let pindot = document.getElementById('lanakomaisip07');
 
+        // Add event listener for the 'click' event
+        pindot.addEventListener('click', function() {
+			alert("Newb!");
+            location.reload();
+        });
 
 
 
